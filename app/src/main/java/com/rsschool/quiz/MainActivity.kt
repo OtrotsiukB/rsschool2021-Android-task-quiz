@@ -20,11 +20,15 @@ class MainActivity : AppCompatActivity(),IRouterFragmentAndQuestionWithAnswer {
     }
 
     override fun openQuestion(numberQuestion: Int) {
-        supportFragmentManager.beginTransaction().apply {
-            addToBackStack(null)
-            add(R.id.fragmentContainerView,Quiz.newInstance(numberQuestion).apply {  })
-            commit()
+        if(numberQuestion<arrayQuestions.size) {
+            supportFragmentManager.beginTransaction().apply {
+                addToBackStack(null)
+                add(R.id.fragmentContainerView, Quiz.newInstance(numberQuestion).apply { })
+                commit()
 
+            }
+        }else{
+            //открыть результа результата
         }
     }
 

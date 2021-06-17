@@ -12,7 +12,7 @@ import com.rsschool.quiz.databinding.FragmentQuizBinding
 
 
 class Quiz : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var numberQuestion: Int? = null
     private var listener: IRouterFragmentAndQuestionWithAnswer?=null
     private var question:Question?=null
@@ -50,11 +50,65 @@ class Quiz : Fragment() {
         if(numberQuestion==0){
             binding.previousButton.isEnabled=false
         }
+        if(numberQuestion==4){
+            binding.nextButton.text="Submit"
+        }
     }
 
+    fun radioButonCheck(){
+        binding.optionOne.setOnClickListener {
+            binding.nextButton.isEnabled=true
+            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,1) }
+        }
+        binding.optionTwo.setOnClickListener {
+            binding.nextButton.isEnabled=true
+            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,2) }
+        }
+        binding.optionThree.setOnClickListener {
+            binding.nextButton.isEnabled=true
+            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,3) }
+        }
+        binding.optionFour.setOnClickListener {
+            binding.nextButton.isEnabled=true
+            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,4) }
+        }
+        binding.optionFive.setOnClickListener {
+            binding.nextButton.isEnabled=true
+            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,5) }
+        }
+    }
+
+    fun checkChouse(){
+        if (question?.choseAnswer!=null)
+        {
+            binding.nextButton.isEnabled=true
+            when(question?.choseAnswer){
+                1 ->{binding.optionOne.isChecked=true}
+                2 ->{binding.optionTwo.isChecked=true}
+                3 ->{binding.optionThree.isChecked=true}
+                4 ->{binding.optionFour.isChecked=true}
+                5 ->{binding.optionFive.isChecked=true}
+                else ->{}
+            }
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Init()
+        radioButonCheck()
+        checkChouse()
+        binding.nextButton.setOnClickListener {
+            if (numberQuestion!=null){
+                listener?.openQuestion(numberQuestion!! +1)
+            }
+        }
+        binding.previousButton.setOnClickListener {
+            if (numberQuestion!=null){
+                listener?.openQuestion(numberQuestion!! -1)
+            }
+        }
+
+
 
     }
 
