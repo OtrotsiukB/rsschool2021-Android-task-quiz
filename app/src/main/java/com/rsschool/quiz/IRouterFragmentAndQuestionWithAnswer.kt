@@ -6,6 +6,6 @@ interface IRouterFragmentAndQuestionWithAnswer {
     fun openQuestion(numberQuestion:Int)
     fun getQuestion(numberQuestion:Int):Question
     fun writeChoseAnswer(numberQuestion:Int,choseAnswer:Int)
-
+    fun getCountQuestions():Int
 
 }

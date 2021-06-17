@@ -1,5 +1,6 @@
 package com.rsschool.quiz.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -40,7 +41,8 @@ class Quiz : Fragment() {
         return binding.root
     }
 
-    fun Init(){
+    @SuppressLint("SetTextI18n")
+    fun init(){
         binding.question.text=question?.textQuestion
         binding.optionOne.text=question?.firstAnswer
         binding.optionTwo.text=question?.twoAnswer
@@ -50,9 +52,10 @@ class Quiz : Fragment() {
         if(numberQuestion==0){
             binding.previousButton.isEnabled=false
         }
-        if(numberQuestion==4){
+        if(numberQuestion== listener?.getCountQuestions()?.minus(1)){
             binding.nextButton.text="Submit"
         }
+        binding.toolbar.title="Question "+numberQuestion?.plus(1)
     }
 
     fun radioButonCheck(){
@@ -94,7 +97,7 @@ class Quiz : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Init()
+        init()
         radioButonCheck()
         checkChouse()
         binding.nextButton.setOnClickListener {
@@ -107,7 +110,13 @@ class Quiz : Fragment() {
                 listener?.openQuestion(numberQuestion!! -1)
             }
         }
-
+        binding.toolbar.setNavigationOnClickListener {
+            if (numberQuestion!=null){
+                if (numberQuestion!!!=0) {
+                    listener?.openQuestion(numberQuestion!! - 1)
+                }
+            }
+        }
 
 
     }

@@ -40,4 +40,8 @@ class MainActivity : AppCompatActivity(),IRouterFragmentAndQuestionWithAnswer {
         arrayQuestions[numberQuestion].choseAnswer=choseAnswer
     }
 
+    override fun getCountQuestions(): Int {
+       return arrayQuestions.count()
+    }
+
 }
