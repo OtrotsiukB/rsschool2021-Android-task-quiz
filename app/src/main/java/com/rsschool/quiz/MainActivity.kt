@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity(),IRouterFragmentAndQuestionWithAnswer,IW
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainerView,Quiz.newInstance(0).apply {  })
             commit()
-
         }
     }
 
@@ -27,15 +26,12 @@ class MainActivity : AppCompatActivity(),IRouterFragmentAndQuestionWithAnswer,IW
                 addToBackStack(null)
                 add(R.id.fragmentContainerView, Quiz.newInstance(numberQuestion).apply { })
                 commit()
-
             }
         }else{
-            //открыть результа результата
             supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.fragmentContainerView,Result.newInstance(showYourResultText()).apply {  })
                 commit()
-
             }
         }
     }
@@ -54,7 +50,7 @@ class MainActivity : AppCompatActivity(),IRouterFragmentAndQuestionWithAnswer,IW
         return arrayQuestions[numberQuestion]
     }
 
-    override fun writeChoseAnswer(numberQuestion: Int, choiseAnswer: Int) {
+    override fun writeChoiceAnswer(numberQuestion: Int, choiseAnswer: Int) {
         arrayQuestions[numberQuestion].choiceAnswer=choiseAnswer
     }
 
@@ -75,8 +71,8 @@ class MainActivity : AppCompatActivity(),IRouterFragmentAndQuestionWithAnswer,IW
         }
         return outText
     }
-    private fun answerInArray(question: Question,numberAnsver:Int):String{
-        when(numberAnsver){
+    private fun answerInArray(question: Question,numberAnswer:Int):String{
+        when(numberAnswer){
             1 -> return question.firstAnswer
             2 -> return question.twoAnswer
             3 -> return question.threeAnswer

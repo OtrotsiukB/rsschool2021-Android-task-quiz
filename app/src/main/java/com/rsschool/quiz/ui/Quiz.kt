@@ -75,23 +75,23 @@ class Quiz : Fragment() {
     fun radioButonCheck(){
         binding.optionOne.setOnClickListener {
             binding.nextButton.isEnabled=true
-            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,1) }
+            numberQuestion?.let { it1 -> listener?.writeChoiceAnswer(it1,1) }
         }
         binding.optionTwo.setOnClickListener {
             binding.nextButton.isEnabled=true
-            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,2) }
+            numberQuestion?.let { it1 -> listener?.writeChoiceAnswer(it1,2) }
         }
         binding.optionThree.setOnClickListener {
             binding.nextButton.isEnabled=true
-            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,3) }
+            numberQuestion?.let { it1 -> listener?.writeChoiceAnswer(it1,3) }
         }
         binding.optionFour.setOnClickListener {
             binding.nextButton.isEnabled=true
-            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,4) }
+            numberQuestion?.let { it1 -> listener?.writeChoiceAnswer(it1,4) }
         }
         binding.optionFive.setOnClickListener {
             binding.nextButton.isEnabled=true
-            numberQuestion?.let { it1 -> listener?.writeChoseAnswer(it1,5) }
+            numberQuestion?.let { it1 -> listener?.writeChoiceAnswer(it1,5) }
         }
     }
 
