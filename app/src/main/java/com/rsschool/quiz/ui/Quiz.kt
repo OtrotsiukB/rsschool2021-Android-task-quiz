@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rsschool.quiz.IRouterFragmentAndQuestionWithAnswer
+import com.rsschool.quiz.R
 import com.rsschool.quiz.data.Question
 import com.rsschool.quiz.databinding.FragmentQuizBinding
+import kotlin.random.Random
 
 
 class Quiz : Fragment() {
@@ -30,11 +32,22 @@ class Quiz : Fragment() {
         }
     }
 
+    fun changeTheme(number:Int){
+        when(number){
+            0       -> {context?.theme?.applyStyle(R.style.Theme_Quiz_First, true);}
+            1       -> {context?.theme?.applyStyle(R.style.Theme_Quiz_Second, true);}
+            2       -> {context?.theme?.applyStyle(R.style.Theme_Quiz_Three, true);}
+            3       -> {context?.theme?.applyStyle(R.style.Theme_Quiz_Four, true);}
+            4       -> {context?.theme?.applyStyle(R.style.Theme_Quiz_Five, true);}
+            else    -> {changeTheme(Random.nextInt(0, 4))}
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        numberQuestion?.let { changeTheme(it) }
         // Inflate the layout for this fragment
       //  return inflater.inflate(R.layout.fragment_quiz, container, false)
         _binding= FragmentQuizBinding.inflate(inflater,container,false)
@@ -51,6 +64,7 @@ class Quiz : Fragment() {
         binding.optionFive.text=question?.fiveAnswer
         if(numberQuestion==0){
             binding.previousButton.isEnabled=false
+            binding.toolbar.navigationIcon=null //.isVisible= View.GONE
         }
         if(numberQuestion== listener?.getCountQuestions()?.minus(1)){
             binding.nextButton.text="Submit"
@@ -82,10 +96,10 @@ class Quiz : Fragment() {
     }
 
     fun checkChouse(){
-        if (question?.choseAnswer!=null)
+        if (question?.choiceAnswer!=null)
         {
             binding.nextButton.isEnabled=true
-            when(question?.choseAnswer){
+            when(question?.choiceAnswer){
                 1 ->{binding.optionOne.isChecked=true}
                 2 ->{binding.optionTwo.isChecked=true}
                 3 ->{binding.optionThree.isChecked=true}

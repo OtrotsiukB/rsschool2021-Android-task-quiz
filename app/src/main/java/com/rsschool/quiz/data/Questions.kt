@@ -1,7 +1,7 @@
 package com.rsschool.quiz.data
 
 object Questions {
-    val arrayQuestions = arrayListOf<Question>(
+    val arrayQuestions = arrayListOf(
         Question("Какие виды специальных средств разрешается использовать в частной охранной деятельности?",
                 "Резиновые палки, наручники, средства для принудительной остановки транспорта.",
                 "Защитные шлемы, защитные жилеты, наручники и резиновые палки.",
